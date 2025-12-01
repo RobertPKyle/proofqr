@@ -3,7 +3,10 @@
     "allow": [
       "Bash(find:*)",
       "Bash(node:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(npm i:*)"
     ],
     "deny": [],
     "ask": []
