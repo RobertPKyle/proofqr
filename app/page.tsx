@@ -59,9 +59,10 @@ export default function Home() {
       const receipt = await tx.wait();
       const transactionHash = receipt!.hash;
 
-      // Generate QR codes
-      const pngDataUrl = await QRCode.toDataURL(transactionHash);
-      const svg = await QRCode.toString(transactionHash, { type: 'svg' });
+      // Generate QR codes with verification URL
+      const verifyUrl = `${window.location.origin}/verify?tx=${transactionHash}`;
+      const pngDataUrl = await QRCode.toDataURL(verifyUrl);
+      const svg = await QRCode.toString(verifyUrl, { type: 'svg' });
 
       setQrUrl(pngDataUrl);
       setQrSvg(svg);

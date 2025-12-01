@@ -3,10 +3,12 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import jsQR from 'jsqr';
 import { ethers } from 'ethers';
 
 export default function Verify() {
+  const searchParams = useSearchParams();
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [status, setStatus] = useState<'idle' | 'scanning' | 'checking' | 'valid' | 'invalid'>('idle');
@@ -15,6 +17,14 @@ export default function Verify() {
   const [scanCount, setScanCount] = useState<number>(0);
 
   const provider = new ethers.JsonRpcProvider(process.env.NEXT_PUBLIC_INFURA_URL);
+
+  // Check for transaction hash in URL on load
+  useEffect(() => {
+    const txFromUrl = searchParams.get('tx');
+    if (txFromUrl) {
+      checkTx(txFromUrl);
+    }
+  }, [searchParams]);
 
   const startCamera = async () => {
     try {
@@ -121,12 +131,15 @@ export default function Verify() {
           <p className="text-cyan-300/70 text-sm mb-8 font-mono">Scan & Validate</p>
 
           {status === 'idle' && (
-            <button
-              onClick={startCamera}
-              className="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 shadow-lg shadow-cyan-500/50 hover:shadow-cyan-400/70 font-mono uppercase tracking-wider"
-            >
-              Start Camera
-            </button>
+            <div className="space-y-4">
+              <p className="text-cyan-300 text-sm">Scan a ProofQR code with your phone's camera app, or use the button below:</p>
+              <button
+                onClick={startCamera}
+                className="w-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 shadow-lg shadow-cyan-500/50 hover:shadow-cyan-400/70 font-mono uppercase tracking-wider"
+              >
+                Manual Camera Scan
+              </button>
+            </div>
           )}
 
           <div className="relative mt-8">
