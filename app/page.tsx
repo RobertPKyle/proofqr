@@ -110,7 +110,17 @@ export default function Home() {
           <h1 className="text-4xl font-bold mb-2 text-center bg-gradient-to-r from-cyan-400 via-blue-500 to-cyan-400 bg-clip-text text-transparent">
             ProofQR
           </h1>
-          <p className="text-cyan-300/70 text-center text-sm mb-8 font-mono">Blockchain Verification System</p>
+          <p className="text-cyan-300/70 text-center text-sm mb-4 font-mono">Blockchain Verification System</p>
+
+          {/* Navigation to Verify Page */}
+          <div className="text-center mb-6">
+            <a
+              href="/verify"
+              className="inline-block px-6 py-2 bg-emerald-600/80 hover:bg-emerald-500 text-white rounded-lg border border-emerald-500/50 transition-all hover:shadow-lg hover:shadow-emerald-500/50 font-mono text-sm"
+            >
+              📷 Scan & Verify QR Code →
+            </a>
+          </div>
 
           {/* Wallet Connection */}
           <div className="mb-6">

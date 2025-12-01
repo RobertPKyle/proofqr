@@ -17,12 +17,26 @@ export default function Verify() {
   const provider = new ethers.JsonRpcProvider(process.env.NEXT_PUBLIC_INFURA_URL);
 
   const startCamera = async () => {
-    setStatus('scanning');
-    const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
-    if (videoRef.current) {
-      videoRef.current.srcObject = stream;
-      videoRef.current.play();
-      requestAnimationFrame(tick);
+    try {
+      setStatus('scanning');
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: {
+          facingMode: 'environment',
+          width: { ideal: 1280 },
+          height: { ideal: 720 }
+        }
+      });
+      if (videoRef.current) {
+        videoRef.current.srcObject = stream;
+        videoRef.current.setAttribute('playsinline', 'true');
+        videoRef.current.setAttribute('autoplay', 'true');
+        await videoRef.current.play();
+        requestAnimationFrame(tick);
+      }
+    } catch (error) {
+      console.error('Camera error:', error);
+      alert('Failed to access camera. Please check permissions.');
+      setStatus('idle');
     }
   };
 
@@ -116,11 +130,21 @@ export default function Verify() {
           )}
 
           <div className="relative mt-8">
-            <video ref={videoRef} className="w-full rounded-lg hidden" playsInline />
+            <video
+              ref={videoRef}
+              className="w-full rounded-lg hidden"
+              playsInline
+              autoPlay
+              muted
+            />
             <canvas
               ref={canvasRef}
               className="w-full rounded-lg border-2 border-cyan-500/50"
-              style={{ boxShadow: status === 'scanning' ? '0 0 20px rgba(0, 212, 255, 0.4)' : 'none' }}
+              style={{
+                boxShadow: status === 'scanning' ? '0 0 20px rgba(0, 212, 255, 0.4)' : 'none',
+                maxHeight: '500px',
+                display: status === 'idle' ? 'none' : 'block'
+              }}
             />
 
             {/* Scanning overlay */}
