@@ -27,14 +27,16 @@ export default function Verify() {
   };
 
   const tick = () => {
-    if (videoRef.current?.readyState === videoRef.current?.HAVE_ENOUGH_DATA && canvasRef.current) {
-      const canvas = canvasRef.current;
-      canvas.height = videoRef.current.videoHeight;
-      canvas.width = videoRef.current.videoWidth;
+    const video = videoRef.current;
+    const canvas = canvasRef.current;
+
+    if (video && video.readyState === video.HAVE_ENOUGH_DATA && canvas) {
+      canvas.height = video.videoHeight;
+      canvas.width = video.videoWidth;
       const ctx = canvas.getContext('2d');
-      ctx?.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
-      const imageData = ctx?.getImageData(0, 0, canvas.width, canvas.height);
-      if (imageData) {
+      if (ctx) {
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         const code = jsQR(imageData.data, imageData.width, imageData.height, {
           inversionAttempts: 'dontInvert',
         });
