@@ -125,7 +125,7 @@ export default function Verify() {
               onClick={startCamera}
               className="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 shadow-lg shadow-cyan-500/50 hover:shadow-cyan-400/70 font-mono uppercase tracking-wider"
             >
-              📷 Start Camera
+              Start Camera
             </button>
           )}
 
@@ -164,13 +164,13 @@ export default function Verify() {
 
           {status === 'scanning' && (
             <p className="mt-6 text-lg text-cyan-300 font-mono animate-pulse">
-              ◉ Scanning for QR Code...
+              Scanning for QR Code...
             </p>
           )}
 
           {status === 'checking' && (
             <p className="mt-6 text-lg text-cyan-300 font-mono animate-pulse">
-              ⟳ Checking Blockchain...
+              Checking Blockchain...
             </p>
           )}
 
@@ -190,7 +190,7 @@ export default function Verify() {
               <p className={`text-3xl font-bold mb-3 font-mono ${
                 status === 'valid' ? 'text-emerald-400' : 'text-red-400'
               }`}>
-                {status === 'valid' ? '✓ VERIFIED' : '✗ INVALID'}
+                {status === 'valid' ? 'VERIFIED' : 'INVALID'}
               </p>
               <p className="break-all text-sm text-cyan-100 bg-slate-950/50 p-3 rounded font-mono">
                 {message}

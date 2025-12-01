@@ -118,7 +118,7 @@ export default function Home() {
               href="/verify"
               className="inline-block px-6 py-2 bg-emerald-600/80 hover:bg-emerald-500 text-white rounded-lg border border-emerald-500/50 transition-all hover:shadow-lg hover:shadow-emerald-500/50 font-mono text-sm"
             >
-              📷 Scan & Verify QR Code →
+              Scan & Verify QR Code →
             </a>
           </div>
 
@@ -129,7 +129,7 @@ export default function Home() {
                 onClick={connectWallet}
                 className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-bold py-3 rounded-lg transition-all duration-300 shadow-lg shadow-purple-500/50 hover:shadow-purple-400/70 font-mono uppercase tracking-wider"
               >
-                🦊 Connect Wallet
+                Connect Wallet
               </button>
             ) : (
               <div className="p-3 bg-emerald-950/50 border border-emerald-500/50 rounded-lg">
@@ -158,7 +158,7 @@ export default function Home() {
               className="w-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold py-4 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 shadow-lg shadow-cyan-500/50 hover:shadow-cyan-400/70 font-mono uppercase tracking-wider"
               style={{ textShadow: loading ? '0 0 10px rgba(0, 212, 255, 0.8)' : 'none' }}
             >
-              {loading ? '⟳ Generating on Blockchain...' : '▶ Generate QR Code'}
+              {loading ? 'Generating on Blockchain...' : 'Generate QR Code'}
             </button>
           </form>
 
@@ -185,13 +185,13 @@ export default function Home() {
                   onClick={downloadPNG}
                   className="px-6 py-2 bg-cyan-600/80 hover:bg-cyan-500 text-white rounded-lg border border-cyan-500/50 transition-all hover:shadow-lg hover:shadow-cyan-500/50 font-mono text-sm"
                 >
-                  ⬇ PNG
+                  Download PNG
                 </button>
                 <button
                   onClick={downloadSVG}
                   className="px-6 py-2 bg-blue-600/80 hover:bg-blue-500 text-white rounded-lg border border-blue-500/50 transition-all hover:shadow-lg hover:shadow-blue-500/50 font-mono text-sm"
                 >
-                  ⬇ SVG
+                  Download SVG
                 </button>
               </div>
 
