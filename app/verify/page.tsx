@@ -93,16 +93,16 @@ function VerifyContent() {
           setScanCount(0);
         }
 
-        // Extract the original message hash from the data field
-        const receivedHash = tx.data;
-        const recoveredMessage = ethers.toUtf8String(ethers.getBytes(receivedHash));
-        setMessage(`Valid! Original data: "${recoveredMessage}"`);
+        // Transaction is valid - it exists on blockchain with data
+        const dataHash = tx.data;
+        setMessage(`Blockchain verified! Data hash: ${dataHash.slice(0, 20)}...`);
         setStatus('valid');
       } else {
         setMessage('No data found in transaction');
         setStatus('invalid');
       }
-    } catch {
+    } catch (error) {
+      console.error('Verification error:', error);
       setMessage('Invalid or unknown transaction');
       setStatus('invalid');
     }
