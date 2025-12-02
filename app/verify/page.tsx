@@ -118,6 +118,23 @@ function VerifyContent() {
         }}></div>
       </div>
 
+      {/* Alpha Version Banner */}
+      <div className="max-w-4xl mx-auto mb-6">
+        <div className="bg-yellow-900/30 border border-yellow-500/50 rounded-lg p-4 backdrop-blur-sm">
+          <div className="flex items-start gap-3">
+            <span className="text-yellow-400 text-xl">⚠</span>
+            <div className="flex-1">
+              <p className="text-yellow-200 font-mono text-sm">
+                <span className="font-bold">ALPHA v0.5</span> - Sepolia Testnet Only
+              </p>
+              <p className="text-yellow-300/70 text-xs mt-1">
+                Experimental software. Not responsible for lost funds.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="max-w-lg mx-auto relative">
         {/* Glow effect behind card */}
         <div className="absolute inset-0 bg-cyan-500/20 blur-3xl rounded-full"></div>
@@ -225,6 +242,13 @@ function VerifyContent() {
               )}
             </div>
           )}
+        </div>
+
+        {/* Footer Disclaimer */}
+        <div className="mt-8 p-4 bg-slate-950/30 border border-slate-700/30 rounded-lg">
+          <p className="text-xs text-slate-400 text-center">
+            Alpha v0.5 | Sepolia Testnet Only
+          </p>
         </div>
       </div>
     </div>
